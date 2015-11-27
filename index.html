@@ -33,8 +33,7 @@
 <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introdução</h3>
 
 <p>Neste tutorial você aprenderá a construir um aplicativo híbrido com look-and-feel nativo utilizando Ionic
-Framework. 
-Você construirá um aplicativo de diário de acontecimentos.</p>
+Framework. </p>
 
 <h3>
 <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>O que você vai aprender</h3>
@@ -43,7 +42,6 @@ Você construirá um aplicativo de diário de acontecimentos.</p>
 
 <li>Como integrar o Ionic com o MobileFirst Foundation v7 (antigo Worklight Foundation)</li>
 
-<li>Como chamar adapters</li>
 </ul>
 </p>
 
@@ -323,9 +321,470 @@ angular.module('starter', ['ionic'])
 </code> 
 </pre></li>
 <li>Teste o build do MobileFirst:
-<pre>mfp bd</pre>
+<pre>mfp bd</pre></li>
+<li>Abra o aplicativo no browser entrando no <a href="http://localhost:10080/worklightconsole" target="_blank">MobileFirst Console</a>
+<li>Teste o build do MobileFirst:
+<pre>mfp bd</pre></li>
 </ol>
 </p>
+<h3>Gerando o aplicativo para Android</h3>
+<ol>
+<li>Acrescente o Environment Android
+    <ul>
+    <li>Via MobileFirst Studio</li>
+    <li>Via MobileFirst CLI<br /><pre>cd MemoMFP/app/MemoApp; mfp add environment android</pre></li></ul>
+  </li>
+  <li>Verifique a estrutura de pastas criadas:
+<pre>
+MemoMFP
+├── adapters
+├── apps
+│   └── MemoApp
+│       ├── android
+│       │   ├── css
+│       │   │   ├── application.css
+│       │   │   └── main.css
+│       │   ├── images
+│       │   ├── js
+│       │   │   └── main.js
+│       │   └── nativeResources
+│       │       └── res
+│       │           ├── drawable
+│       │           ├── drawable-hdpi
+│       │           ├── drawable-hdpi-v11
+│       │           ├── drawable-ldpi
+│       │           ├── drawable-ldpi-v11
+│       │           ├── drawable-mdpi
+│       │           ├── drawable-mdpi-v11
+│       │           ├── drawable-xhdpi
+│       │           ├── drawable-xhdpi-v11
+│       │           └── raw
+│       ├── application-descriptor.xml
+│       ├── build-settings.xml
+│       ├── certificates
+│       │   └── Readme.txt
+│       ├── common
+│       │   ├── css
+│       │   │   └── main.css
+│       │   ├── images
+│       │   │   ├── icon.png
+│       │   │   └── thumbnail.png
+│       │   ├── index.html
+│       │   └── js
+│       │       ├── initOptions.js
+│       │       ├── main.js
+│       │       └── messages.js
+│       └── legal
+│           └── license.txt
+├── bin
+│   └── classes
+├── components
+├── externalServerLibraries
+│   ├── com.ibm.worklight.oauth.tai_1.0.0.jar
+│   ├── mfp-xs-loader.jar
+│   └── OAuthTai-1.0.mf
+├── server
+│   ├── conf
+│   │   ├── authenticationConfig.xml
+│   │   ├── login.html
+│   │   ├── mfp-default.keystore
+│   │   ├── SMSConfig.xml
+│   │   └── worklight.properties
+│   ├── java
+│   └── lib
+└── services
+
+
+</pre></li>
+<li>Faça o build do Environment Android
+    <ul>
+    <li>Via MobileFirst Studio</li>
+    <li>Via MobileFirst CLI<br /><pre>cd MemoMFP; mfp bd</pre></li></ul>
+  </li>
+  <li>Verifique a estrutura de pastas criadas:
+<pre>
+├── adapters
+├── apps
+│   └── MemoApp
+│       ├── android
+│       │   ├── css
+│       │   │   ├── application.css
+│       │   │   └── main.css
+│       │   ├── images
+│       │   ├── js
+│       │   │   └── main.js
+│       │   ├── native
+│       │   │   ├── AndroidManifest.xml
+│       │   │   ├── assets
+│       │   │   │   ├── certificates
+│       │   │   │   ├── featurelibs
+│       │   │   │   │   ├── armeabi
+│       │   │   │   │   └── x86
+│       │   │   │   ├── wlclient.properties
+│       │   │   │   └── www
+│       │   │   │       ├── default
+│       │   │   │       │   ├── css
+│       │   │   │       │   │   ├── application.css
+│       │   │   │       │   │   └── main.css
+│       │   │   │       │   ├── filelist
+│       │   │   │       │   ├── images
+│       │   │   │       │   │   ├── icon.png
+│       │   │   │       │   │   └── thumbnail.png
+│       │   │   │       │   ├── index.html
+│       │   │   │       │   ├── js
+│       │   │   │       │   │   ├── initOptions.js
+│       │   │   │       │   │   ├── main.js
+│       │   │   │       │   │   ├── messages.js
+│       │   │   │       │   │   └── skinLoader.js
+│       │   │   │       │   └── worklight
+│       │   │   │       │       ├── checksum.js
+│       │   │   │       │       ├── cordova.js
+│       │   │   │       │       ├── cordova_plugins.js
+│       │   │   │       │       ├── messages
+│       │   │   │       │       │   ├── de
+│       │   │   │       │       │   │   └── messages.json
+│       │   │   │       │       │   ├── es
+│       │   │   │       │       │   │   └── messages.json
+│       │   │   │       │       │   ├── fr
+│       │   │   │       │       │   │   └── messages.json
+│       │   │   │       │       │   ├── he
+│       │   │   │       │       │   │   └── messages.json
+│       │   │   │       │       │   ├── it
+│       │   │   │       │       │   │   └── messages.json
+│       │   │   │       │       │   ├── ja
+│       │   │   │       │       │   │   └── messages.json
+│       │   │   │       │       │   ├── ko
+│       │   │   │       │       │   │   └── messages.json
+│       │   │   │       │       │   ├── messages.json
+│       │   │   │       │       │   ├── pt-BR
+│       │   │   │       │       │   │   └── messages.json
+│       │   │   │       │       │   ├── ru
+│       │   │   │       │       │   │   └── messages.json
+│       │   │   │       │       │   ├── zh
+│       │   │   │       │       │   │   └── messages.json
+│       │   │   │       │       │   └── zh-TW
+│       │   │   │       │       │       └── messages.json
+│       │   │   │       │       ├── plugins
+│       │   │   │       │       │   ├── org.apache.cordova.battery-status
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       └── battery.js
+│       │   │   │       │       │   ├── org.apache.cordova.camera
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       ├── CameraConstants.js
+│       │   │   │       │       │   │       ├── Camera.js
+│       │   │   │       │       │   │       ├── CameraPopoverHandle.js
+│       │   │   │       │       │   │       └── CameraPopoverOptions.js
+│       │   │   │       │       │   ├── org.apache.cordova.contacts
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       ├── ContactAddress.js
+│       │   │   │       │       │   │       ├── ContactError.js
+│       │   │   │       │       │   │       ├── ContactField.js
+│       │   │   │       │       │   │       ├── ContactFieldType.js
+│       │   │   │       │       │   │       ├── ContactFindOptions.js
+│       │   │   │       │       │   │       ├── Contact.js
+│       │   │   │       │       │   │       ├── ContactName.js
+│       │   │   │       │       │   │       ├── ContactOrganization.js
+│       │   │   │       │       │   │       └── contacts.js
+│       │   │   │       │       │   ├── org.apache.cordova.device
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       └── device.js
+│       │   │   │       │       │   ├── org.apache.cordova.device-motion
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       ├── Acceleration.js
+│       │   │   │       │       │   │       └── accelerometer.js
+│       │   │   │       │       │   ├── org.apache.cordova.device-orientation
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       ├── CompassError.js
+│       │   │   │       │       │   │       ├── CompassHeading.js
+│       │   │   │       │       │   │       └── compass.js
+│       │   │   │       │       │   ├── org.apache.cordova.dialogs
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       ├── android
+│       │   │   │       │       │   │       │   └── notification.js
+│       │   │   │       │       │   │       └── notification.js
+│       │   │   │       │       │   ├── org.apache.cordova.file
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       ├── android
+│       │   │   │       │       │   │       │   └── FileSystem.js
+│       │   │   │       │       │   │       ├── DirectoryEntry.js
+│       │   │   │       │       │   │       ├── DirectoryReader.js
+│       │   │   │       │       │   │       ├── Entry.js
+│       │   │   │       │       │   │       ├── FileEntry.js
+│       │   │   │       │       │   │       ├── FileError.js
+│       │   │   │       │       │   │       ├── File.js
+│       │   │   │       │       │   │       ├── FileReader.js
+│       │   │   │       │       │   │       ├── FileSystem.js
+│       │   │   │       │       │   │       ├── fileSystemPaths.js
+│       │   │   │       │       │   │       ├── fileSystems.js
+│       │   │   │       │       │   │       ├── fileSystems-roots.js
+│       │   │   │       │       │   │       ├── FileUploadOptions.js
+│       │   │   │       │       │   │       ├── FileUploadResult.js
+│       │   │   │       │       │   │       ├── FileWriter.js
+│       │   │   │       │       │   │       ├── Flags.js
+│       │   │   │       │       │   │       ├── LocalFileSystem.js
+│       │   │   │       │       │   │       ├── Metadata.js
+│       │   │   │       │       │   │       ├── ProgressEvent.js
+│       │   │   │       │       │   │       ├── requestFileSystem.js
+│       │   │   │       │       │   │       └── resolveLocalFileSystemURI.js
+│       │   │   │       │       │   ├── org.apache.cordova.file-transfer
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       ├── FileTransferError.js
+│       │   │   │       │       │   │       └── FileTransfer.js
+│       │   │   │       │       │   ├── org.apache.cordova.globalization
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       ├── GlobalizationError.js
+│       │   │   │       │       │   │       └── globalization.js
+│       │   │   │       │       │   ├── org.apache.cordova.inappbrowser
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       └── inappbrowser.js
+│       │   │   │       │       │   ├── org.apache.cordova.media
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       ├── MediaError.js
+│       │   │   │       │       │   │       └── Media.js
+│       │   │   │       │       │   ├── org.apache.cordova.media-capture
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       ├── CaptureAudioOptions.js
+│       │   │   │       │       │   │       ├── CaptureError.js
+│       │   │   │       │       │   │       ├── CaptureImageOptions.js
+│       │   │   │       │       │   │       ├── capture.js
+│       │   │   │       │       │   │       ├── CaptureVideoOptions.js
+│       │   │   │       │       │   │       ├── ConfigurationData.js
+│       │   │   │       │       │   │       ├── MediaFileData.js
+│       │   │   │       │       │   │       └── MediaFile.js
+│       │   │   │       │       │   ├── org.apache.cordova.network-information
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       ├── Connection.js
+│       │   │   │       │       │   │       └── network.js
+│       │   │   │       │       │   ├── org.apache.cordova.splashscreen
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       └── splashscreen.js
+│       │   │   │       │       │   ├── org.apache.cordova.statusbar
+│       │   │   │       │       │   │   └── www
+│       │   │   │       │       │   │       └── statusbar.js
+│       │   │   │       │       │   └── org.apache.cordova.vibration
+│       │   │   │       │       │       └── www
+│       │   │   │       │       │           └── vibration.js
+│       │   │   │       │       ├── wljq.js
+│       │   │   │       │       ├── worklight.css
+│       │   │   │       │       └── worklight.js
+│       │   │   │       └── skinLoader.html
+│       │   │   ├── gen
+│       │   │   │   └── com
+│       │   │   │       └── MemoApp
+│       │   │   │           ├── Manifest.java
+│       │   │   │           └── R.java
+│       │   │   ├── libs
+│       │   │   │   ├── android-async-http.jar
+│       │   │   │   ├── armeabi
+│       │   │   │   │   └── libauthjni.so
+│       │   │   │   ├── armeabi-v7a
+│       │   │   │   │   └── libauthjni.so
+│       │   │   │   ├── bcprov.jar
+│       │   │   │   ├── commons-codec.jar
+│       │   │   │   ├── cordova.jar
+│       │   │   │   ├── guava.jar
+│       │   │   │   ├── jackson-core-asl.jar
+│       │   │   │   ├── jackson-mapper-asl.jar
+│       │   │   │   ├── mips
+│       │   │   │   │   └── libauthjni.so
+│       │   │   │   ├── mips64
+│       │   │   │   │   └── libauthjni.so
+│       │   │   │   ├── worklight-android.jar
+│       │   │   │   └── x86
+│       │   │   │       └── libauthjni.so
+│       │   │   ├── MemoApp.iml
+│       │   │   ├── proguard-project.txt
+│       │   │   ├── project.properties
+│       │   │   ├── res
+│       │   │   │   ├── drawable
+│       │   │   │   │   ├── icon.png
+│       │   │   │   │   ├── push.png
+│       │   │   │   │   └── splash.9.png
+│       │   │   │   ├── drawable-hdpi
+│       │   │   │   │   ├── ic_action_next_item.png
+│       │   │   │   │   ├── ic_action_previous_item.png
+│       │   │   │   │   ├── ic_action_remove.png
+│       │   │   │   │   ├── icon.png
+│       │   │   │   │   ├── push.png
+│       │   │   │   │   └── settings.png
+│       │   │   │   ├── drawable-hdpi-v11
+│       │   │   │   │   └── push.png
+│       │   │   │   ├── drawable-ldpi
+│       │   │   │   │   ├── icon.png
+│       │   │   │   │   ├── push.png
+│       │   │   │   │   └── settings.png
+│       │   │   │   ├── drawable-ldpi-v11
+│       │   │   │   │   └── push.png
+│       │   │   │   ├── drawable-mdpi
+│       │   │   │   │   ├── ic_action_next_item.png
+│       │   │   │   │   ├── ic_action_previous_item.png
+│       │   │   │   │   ├── ic_action_remove.png
+│       │   │   │   │   ├── icon.png
+│       │   │   │   │   ├── push.png
+│       │   │   │   │   └── settings.png
+│       │   │   │   ├── drawable-mdpi-v11
+│       │   │   │   │   └── push.png
+│       │   │   │   ├── drawable-xhdpi
+│       │   │   │   │   ├── ic_action_next_item.png
+│       │   │   │   │   ├── ic_action_previous_item.png
+│       │   │   │   │   ├── ic_action_remove.png
+│       │   │   │   │   ├── icon.png
+│       │   │   │   │   ├── push.png
+│       │   │   │   │   └── settings.png
+│       │   │   │   ├── drawable-xhdpi-v11
+│       │   │   │   │   └── push.png
+│       │   │   │   ├── raw
+│       │   │   │   ├── values
+│       │   │   │   │   └── strings.xml
+│       │   │   │   ├── values-de
+│       │   │   │   │   └── strings.xml
+│       │   │   │   ├── values-es
+│       │   │   │   │   └── strings.xml
+│       │   │   │   ├── values-fr
+│       │   │   │   │   └── strings.xml
+│       │   │   │   ├── values-he
+│       │   │   │   │   └── strings.xml
+│       │   │   │   ├── values-it
+│       │   │   │   │   └── strings.xml
+│       │   │   │   ├── values-iw
+│       │   │   │   │   └── strings.xml
+│       │   │   │   ├── values-ja
+│       │   │   │   │   └── strings.xml
+│       │   │   │   ├── values-ko
+│       │   │   │   │   └── strings.xml
+│       │   │   │   ├── values-pt-rBR
+│       │   │   │   │   └── strings.xml
+│       │   │   │   ├── values-ru
+│       │   │   │   │   └── strings.xml
+│       │   │   │   ├── values-zh
+│       │   │   │   │   └── strings.xml
+│       │   │   │   ├── values-zh-rTW
+│       │   │   │   │   └── strings.xml
+│       │   │   │   └── xml
+│       │   │   │       └── config.xml
+│       │   │   └── src
+│       │   │       └── com
+│       │   │           └── MemoApp
+│       │   │               ├── ForegroundService.java
+│       │   │               ├── GCMIntentService.java
+│       │   │               └── MemoApp.java
+│       │   └── nativeResources
+│       │       └── res
+│       │           ├── drawable
+│       │           ├── drawable-hdpi
+│       │           ├── drawable-hdpi-v11
+│       │           ├── drawable-ldpi
+│       │           ├── drawable-ldpi-v11
+│       │           ├── drawable-mdpi
+│       │           ├── drawable-mdpi-v11
+│       │           ├── drawable-xhdpi
+│       │           ├── drawable-xhdpi-v11
+│       │           └── raw
+│       ├── application-descriptor.xml
+│       ├── build-settings.xml
+│       ├── certificates
+│       │   └── Readme.txt
+│       ├── common
+│       │   ├── css
+│       │   │   └── main.css
+│       │   ├── images
+│       │   │   ├── icon.png
+│       │   │   └── thumbnail.png
+│       │   ├── index.html
+│       │   └── js
+│       │       ├── initOptions.js
+│       │       ├── main.js
+│       │       └── messages.js
+│       └── legal
+│           └── license.txt
+├── bin
+│   ├── classes
+│   ├── MemoApp-all.wlapp
+│   ├── MemoApp-android-1.0.wlapp
+│   ├── MemoApp-common.wlapp
+│   ├── MemoMFP.war
+│   └── war
+├── components
+├── externalServerLibraries
+│   ├── com.ibm.worklight.oauth.tai_1.0.0.jar
+│   ├── mfp-xs-loader.jar
+│   └── OAuthTai-1.0.mf
+├── server
+│   ├── conf
+│   │   ├── authenticationConfig.xml
+│   │   ├── login.html
+│   │   ├── mfp-default.keystore
+│   │   ├── SMSConfig.xml
+│   │   └── worklight.properties
+│   ├── java
+│   └── lib
+└── services
+
+
+
+</pre></li>
+<li>Verifique as versões de Android SDK disponíveis<br />
+<pre>android list targets
+
+
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar 
+Available Android targets:
+----------
+id: 1 or "android-21"
+     Name: Android 5.0.1
+     Type: Platform
+     API level: 21
+     Revision: 2
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
+ Tag/ABIs : no ABIs.
+----------
+id: 2 or "android-22"
+     Name: Android 5.1.1
+     Type: Platform
+     API level: 22
+     Revision: 2
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
+ Tag/ABIs : no ABIs.
+----------
+id: 3 or "android-23"
+     Name: Android 6.0
+     Type: Platform
+     API level: 23
+     Revision: 1
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
+ Tag/ABIs : no ABIs.
+----------
+id: 4 or "Google Inc.:Google APIs:23"
+     Name: Google APIs
+     Type: Add-On
+     Vendor: Google Inc.
+     Revision: 1
+     Description: Android + Google APIs
+     Based on Android 6.0 (API level 23)
+     Libraries:
+      * com.android.future.usb.accessory (usb.jar)
+          API for USB Accessories
+      * com.google.android.media.effects (effects.jar)
+          Collection of video effects
+      * com.google.android.maps (maps.jar)
+          API for Google Maps
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
+ Tag/ABIs : google_apis/x86
+</pre>
+</li>
+<li>Crie o APK
+    <ul>
+    <li>Via Android Development Tools (ADT)</li>
+    <li>Via Android Studio</li>
+    <li>Via linha de comando<ol><li>Gerar o script de build<br /><pre>cd MemoMFP/apps/MemoApp/android/native; android update -p . -t id_sdk<br/>
+# onde id_sdk é o id retornado do comando "android list targets"</pre></li><li>Executar o script<br/><pre>ant debug</pre></li>
+  </ol>
+  </li></ul>
+  </li>
+</ol>
+
         </section>
 
         <aside id="sidebar">
