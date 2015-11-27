@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="stylesheets/prism.css">
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -250,44 +251,79 @@ cp -Rf MemoIO/www MemoMFP/apps/MemoApp/common
     <li>Inclua os javascripts do Worklight (wlInitOptions.js, main.js e messages.js)</li>
 </ul></li>
 <li>Verifique as alterações do arquivo MemoMFP/apps/MemoApp/common/index.html:
-<code>
-<![CDATA[ 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
- 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
- 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
+<pre><code  class="language-markup">
+&lt;!DOCTYPE html>
+&lt;html>
+  &lt;head>
+    &lt;meta charset="utf-8">
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    &lt;title>&lt;/title>
+    &lt;link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    &lt;link href="css/style.css" rel="stylesheet">
+    &lt;!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    &lt;link href="css/ionic.app.css" rel="stylesheet">
     -->
  
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    &lt;!-- ionic/angularjs js -->
+    &lt;script src="lib/ionic/js/ionic.bundle.js">&lt;/script>
  
-    <!-- cordova script (this will be a 404 during development) -->
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/wlInit.js"></script>
-  </head>
-  <body ng-app="starter">
- 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
-  </body>
-</html>
-]]>
-</code></li>
+    &lt;!-- cordova script (this will be a 404 during development) -->
+    &lt;!-- your app's js -->
+    &lt;script src="js/app.js">&lt;/script>
 
+  &lt;/head>
+  &lt;body ng-app="starter">
+ 
+    &lt;ion-pane>
+      &lt;ion-header-bar class="bar-stable">
+        &lt;h1 class="title">Ionic Blank Starter&lt;/h1>
+      &lt;/ion-header-bar>
+      &lt;ion-content>
+      &lt;/ion-content>
+    &lt;/ion-pane>
+    &lt;script src="js/wlInitOptions.js">&lt;/script>
+    &lt;script src="js/main.js">&lt;/script>
+    &lt;script src="js/messages.js">&lt;/script>
+  &lt;/body>
+&lt;/html>
+</code></pre></li>
+<li>Há um <a href="http://stackoverflow.com/questions/29227204/declaration-of-doctype-html-does-not-work-with-ionics-ion-nav-view-in-ibm-mo/29258958#29258958">conflito dos estilos do MobileFirst com o Ionic</a>. Para resolvê-lo altere o MemoMFP/apps/MemoApp/common/css/style.css:
+<pre>
+<code class="language-css">
+body {
+    position: absolute;
+}
+</code> 
+</pre></li>
+<li>Remova a inicialização do Cordova feito pelo Ionic, uma vez que o Worklight será o responsável pelo mesmo. Edite o arquivo MemoMFP/apps/MemoApp/common/js/app.js:
+<pre>
+<code class="language-javascript">
+// Ionic Starter App
+ 
+// angular.module is a global place for creating, registering and retrieving Angular modules
+// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// the 2nd parameter is an array of 'requires'
+angular.module('starter', ['ionic'])
+ 
+//.run(function($ionicPlatform) {
+//  $ionicPlatform.ready(function() {
+//    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+//    // for form inputs)
+//      /*
+//    if(window.cordova && window.cordova.plugins.Keyboard) {
+//      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+//    }
+//    */
+//    if(window.StatusBar) {
+//      StatusBar.styleDefault();
+//    }
+//  });
+//})
+
+</code> 
+</pre></li>
+<li>Teste o build do MobileFirst:
+<pre>mfp bd</pre>
 </ol>
 </p>
         </section>
@@ -308,6 +344,6 @@ cp -Rf MemoIO/www MemoMFP/apps/MemoApp/common
         </aside>
       </div>
     </div>
-
+  <script src="javascripts/prism.js"></script>
   </body>
 </html>
